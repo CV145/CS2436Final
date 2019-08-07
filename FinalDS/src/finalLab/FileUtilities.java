@@ -31,9 +31,9 @@ public class FileUtilities {
 	}
 	
 	//method that reads a line from a file and returns it as a string
-	public static String readLineFromFile (String fileName) throws IOException
+	public static String readLineFromFile (String fileName, Scanner scanner) throws IOException
 	{
-		Scanner scanner = getScannerForFile(fileName);
+		//scanner needs to be passed in because if declared here it will reset each call
 		if (scanner.hasNext())
 		{
 			return scanner.nextLine();

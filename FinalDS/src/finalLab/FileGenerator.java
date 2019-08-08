@@ -3,9 +3,18 @@ package finalLab;
 import java.io.File;
 import java.io.IOException;
 
-public class TextFileGenerator{
+/**
+ * A generator for making new files.
+ * @author carlo
+ *
+ */
+public class FileGenerator{
 	
-	//generates a new text file and places it in the desired path
+	/**Generates a new text file and places it in the desired path.
+	 * @param path
+	 * @return A String message of whether the file was successfully created or not.
+	 * @throws IOException
+	 */
 	public static String GenerateNewTextFile(String path) throws IOException
 	{
 		File file = new File(path);

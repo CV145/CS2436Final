@@ -4,10 +4,20 @@ import java.awt.Desktop;
 import java.io.*;
 import java.util.Scanner;
 
+/**
+ * This is a collection of re-usable file methods, such as writing and reading to files.
+ * @author carlo
+ *
+ */
 public class FileUtilities {
 
 	
-	//method that writes a line to a file
+	/** This method writes a line into a given file name.
+	 * @param lineToAppend
+	 * @param fileName
+	 * @return boolean
+	 * @throws IOException
+	 */
 	public static boolean appendLineToFile (String lineToAppend, String fileName) throws IOException
 	{
 		File file = new File (fileName); // creates an instance of File class
@@ -30,7 +40,13 @@ public class FileUtilities {
 		return true; 
 	}
 	
-	//method that reads a line from a file and returns it as a string
+	/**
+	 * This method reads a line from a file and returns it as a String.
+	 * @param fileName
+	 * @param scanner
+	 * @return String
+	 * @throws IOException
+	 */
 	public static String readLineFromFile (String fileName, Scanner scanner) throws IOException
 	{
 		//scanner needs to be passed in because if declared here it will reset each call
@@ -45,7 +61,12 @@ public class FileUtilities {
 	}
 
 
-	//method for automatically opening a file using Desktop
+	/**
+	 * This method opens a file using Desktop, if possible. Returns an error message if it can't.
+	 * @param fileName
+	 * @return String
+	 * @throws IOException
+	 */
 	public static String openFileOnDesktop (String fileName) throws IOException 
 	{
 		File file = new File(fileName);
@@ -69,7 +90,11 @@ public class FileUtilities {
 		return errorMessage;
 	}
 
-	//method that looks for and gets the directory of where a file is located
+	/**
+	 * This method looks for and returns the directory of where a file is located.
+	 * @param filePath
+	 * @return String
+	 */
 	public static String getFileDirectory (String filePath)
 	{
 		String fileDirectory;
@@ -79,11 +104,28 @@ public class FileUtilities {
 		else return null;
 	}
 
-	//method returns a scanner for a given file name
+	/**
+	 * This method creates a Scanner object for a given file name.
+	 * @param fileName
+	 * @return Scanner
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static Scanner getScannerForFile (String fileName) throws FileNotFoundException, IOException
 	{
 		FileReader fileToOpen = new FileReader (fileName);
 		return new Scanner(fileToOpen);
 	}
 
+	/**
+	 * Deletes a file with the name fileName.
+	 * @param fileName
+	 * @return A boolean check for whether the file was actually deleted or not.
+	 */
+	public static boolean deleteFile (String fileName) 
+	{
+		File file = new File (fileName);
+		if (file.delete()) return true;
+		else return false;
+	}
 }

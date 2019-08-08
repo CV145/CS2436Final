@@ -6,33 +6,29 @@ import javax.swing.*;
 //taking in input
 public class MessageBox {
 	
-	//method for displaying a string in a box
-	public static void displayMessage(String message)
-	{
-		JFrame frame = new JFrame();
-		JOptionPane.showMessageDialog(frame, message);
-		
-		//Pass in a string message
-		
-		//Create a frame object
-		
-		//Create a message box using the passed in message and
-		//the frame just built
-	}
-	/*
+	/**This method displays a passed in string in 
+	 * a message box.
 	 * @param String message
 	 * @return void
 	 * @throws none
 	 */
+	public static void displayMessage(String message)
+	{
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame, message);
+	}
 	
-	//method for getting user input using an input dialog
+	
+	/** This method creates a dialog box asking the user for
+	 * String input, and returns it. A message is passed in to 
+	 * help prompt the user.
+	 * @param String message
+	 * @return Whatever input the user put into the dialog box.
+	 * @throws none
+	 */
 	public static String getInput(String message)
 	{
 		return JOptionPane.showInputDialog(message);
 	}
-	/*
-	 * @param String message
-	 * @return String
-	 * @throws none
-	 */
+	
 }

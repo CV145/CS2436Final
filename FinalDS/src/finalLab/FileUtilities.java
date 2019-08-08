@@ -2,7 +2,9 @@ package finalLab;
 
 import java.awt.Desktop;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /**
  * This is a collection of re-usable file methods, such as writing and reading to files.
@@ -59,7 +61,30 @@ public class FileUtilities {
 			return null;
 		}
 	}
+	
+	/**
+	 * Checks if the given file path contents are empty.
+	 * @param path
+	 * @return boolean for whether the path contents are empty or not.
+	 * @throws IOException, FileNotFoundException
+	 */
+	public static boolean isEmpty(String path) throws IOException, FileNotFoundException
+	{
+		File file = new File(path);
+		Scanner scanner = getScannerForFile(path);
+		if (readLineFromFile(path, scanner) == null)
+		{
+			scanner.close();
+			return true;
+		}
+		else 
+			{
+				scanner.close();
+				return false;
+			}
+	}
 
+	
 
 	/**
 	 * This method opens a file using Desktop, if possible. Returns an error message if it can't.
@@ -105,16 +130,17 @@ public class FileUtilities {
 	}
 
 	/**
-	 * This method creates a Scanner object for a given file name.
+	 * This method creates a Scanner object for a given file name. If the file with that name doesn't exist 
+	 * this method will return null instead.
 	 * @param fileName
 	 * @return Scanner
-	 * @throws FileNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException 
 	 */
-	public static Scanner getScannerForFile (String fileName) throws FileNotFoundException, IOException
+	public static Scanner getScannerForFile (String fileName) throws IOException
 	{
-		FileReader fileToOpen = new FileReader (fileName);
-		return new Scanner(fileToOpen);
+		FileReader fileToOpen = new FileReader (fileName); // closes when closing scanner
+		Scanner scanner = new Scanner(fileToOpen);
+		return scanner;
 	}
 
 	/**
@@ -128,4 +154,30 @@ public class FileUtilities {
 		if (file.delete()) return true;
 		else return false;
 	}
+	
+	   /**
+	    * Tokenizes a String and returns an ArrayList of type String, made up of tokens.
+	    * @param stringToTokenize
+	    * @param delimiter
+	    * @return ArrayList<String> containing the tokens of the passed in String.
+	    */
+		public static ArrayList<String> tokenizeString(String stringToTokenize, String delimiter)
+		{
+		 StringTokenizer tokenizer;
+		 if (delimiter != null)
+		 {
+			 tokenizer = new StringTokenizer(stringToTokenize, delimiter); 
+		 }
+		 else
+		 {
+			 tokenizer = new StringTokenizer(stringToTokenize); //in case null was passed in
+		 }
+		 
+		 ArrayList<String> tokens = new ArrayList<String>();
+		 while (tokenizer.hasMoreTokens())
+		 {
+		  tokens.add(tokenizer.nextToken());
+		 }
+		 return tokens;
+		}
 }

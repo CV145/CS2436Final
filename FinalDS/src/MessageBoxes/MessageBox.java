@@ -1,4 +1,4 @@
-package finalLab;
+package MessageBoxes;
 
 import javax.swing.*;
 

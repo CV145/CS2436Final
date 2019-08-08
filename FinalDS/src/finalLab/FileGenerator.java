@@ -12,17 +12,28 @@ public class FileGenerator{
 	
 	/**Generates a new text file and places it in the desired path.
 	 * @param path
-	 * @return A String message of whether the file was successfully created or not.
-	 * @throws IOException
+	 * @return boolean for whether the path was successfully created or not
 	 */
-	public static String GenerateNewTextFile(String path) throws IOException
+	public static boolean generateNewTextFile(String path) 
+	{
+			File file = new File(path);
+			try { file.createNewFile(); }
+			catch (IOException io) { return false; }
+			return true;
+	}
+	
+	/**
+	 * This method checks if a file path exists.
+	 * @param path
+	 * @return boolean for whether the file exists or not.
+	 */
+	public static boolean exists(String path)
 	{
 		File file = new File(path);
-		if (file.exists())
+		if (!file.exists())
 		{
-			return "The file path  " + path + " already exists.";
+			return false;
 		}
-		file.createNewFile();
-		return "The file path " + path + " was successfully created.";
+		return true;
 	}
 }

@@ -15,7 +15,7 @@ public class CandidateState {
 	 */
 	public CandidateState(int _votes)
 	{
-		votes = _votes;
+		this.votes = _votes;
 	}
 	
 	/**
